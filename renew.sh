@@ -5,7 +5,7 @@
 #
 # Released under the GNU GPLv3 License.
 
-DOMAIN=$(grep "adv/Misc/HostName" /etc/vmware/esx.conf | awk '{print $3}' | xargs)
+DOMAIN=$(/bin/esxcli system hostname get | awk 'FNR == 2 {print $5}')
 LOCALDIR=$(dirname "$(readlink -f "$0")")
 LOCALSCRIPT=$(basename "$0")
 
